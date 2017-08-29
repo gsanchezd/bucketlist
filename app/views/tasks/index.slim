@@ -1,0 +1,12 @@
+.card-columns
+  - @tasks.each do |task|
+    .card
+      img.card-img-top class=('not-ready' unless task.completed?(current_user) ) alt=("Card image cap") src=task.image /
+      .card-body
+        h4.card-title= task.name
+        //p.card-text This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+        p.card-text
+          small.text-muted Last updated 3 mins ago
+        p
+          - unless task.completed?(current_user)
+            = link_to "Listo", task_user_tasks_path(task), method: :create, class: 'btn btn-primary btn-xs'
